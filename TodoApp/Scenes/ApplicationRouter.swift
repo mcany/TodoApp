@@ -10,8 +10,10 @@ import UIKit
 
 final class ApplicationRouter {
 
+    private var window: UIWindow!
+
     func initialize() {
-        let window = UIWindow(frame: UIScreen.main.bounds)
+        window = UIWindow(frame: UIScreen.main.bounds)
 
         let controller = ListViewController()
         let navigationController = UINavigationController(rootViewController: controller)

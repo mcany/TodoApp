@@ -16,6 +16,7 @@
 		2B8A41CC2321865E0047917C /* UITableView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A41CB2321865E0047917C /* UITableView+Additions.swift */; };
 		2B8A41CE2321868D0047917C /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A41CD2321868D0047917C /* Reusable.swift */; };
 		2B8A41D0232188210047917C /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B8A41CF232188210047917C /* ListViewController.xib */; };
+		2B8A41D323218F180047917C /* DateUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A41D223218F180047917C /* DateUtility.swift */; };
 		2BED1BD1232169B70019659E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BED1BD0232169B70019659E /* AppDelegate.swift */; };
 		2BED1BD9232169B70019659E /* TodoApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2BED1BD7232169B70019659E /* TodoApp.xcdatamodeld */; };
 		2BED1BDB232169B80019659E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BED1BDA232169B80019659E /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		2B8A41CB2321865E0047917C /* UITableView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Additions.swift"; sourceTree = "<group>"; };
 		2B8A41CD2321868D0047917C /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		2B8A41CF232188210047917C /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
+		2B8A41D223218F180047917C /* DateUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtility.swift; sourceTree = "<group>"; };
 		2BED1BCD232169B70019659E /* TodoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BED1BD0232169B70019659E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BED1BD8232169B70019659E /* TodoApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodoApp.xcdatamodel; sourceTree = "<group>"; };
@@ -93,10 +95,10 @@
 		2B8A41BD2321820B0047917C /* List */ = {
 			isa = PBXGroup;
 			children = (
-				2B8A41C6232185B60047917C /* Views */,
 				2B8A41BE2321829D0047917C /* ListViewModel.swift */,
 				2B8A41C0232184350047917C /* ListViewController.swift */,
 				2B8A41CF232188210047917C /* ListViewController.xib */,
+				2B8A41C6232185B60047917C /* Views */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -126,6 +128,14 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
+		2B8A41D123218F0B0047917C /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				2B8A41D223218F180047917C /* DateUtility.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		2BED1BC4232169B70019659E = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +160,7 @@
 				2B8A41B7232179AD0047917C /* Database */,
 				2B8A41C9232186240047917C /* Extensions */,
 				2B8A41BC232182040047917C /* Scenes */,
+				2B8A41D123218F0B0047917C /* Utility */,
 				2BED1BD0232169B70019659E /* AppDelegate.swift */,
 				2BED1BDA232169B80019659E /* Assets.xcassets */,
 				2BED1BDC232169B80019659E /* LaunchScreen.storyboard */,
@@ -271,6 +282,7 @@
 			files = (
 				2BED1BD9232169B70019659E /* TodoApp.xcdatamodeld in Sources */,
 				2B8A41C8232185C70047917C /* ListTableViewCell.swift in Sources */,
+				2B8A41D323218F180047917C /* DateUtility.swift in Sources */,
 				2B8A41BF2321829D0047917C /* ListViewModel.swift in Sources */,
 				2B8A41B9232179B80047917C /* Database.swift in Sources */,
 				2B8A41CE2321868D0047917C /* Reusable.swift in Sources */,

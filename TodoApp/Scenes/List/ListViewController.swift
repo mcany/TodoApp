@@ -38,6 +38,7 @@ extension ListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ListTableViewCell = tableView.uk_dequeueReusableCell(forIndexPath: indexPath)
+        cell.configure(todo: viewModel.items[indexPath.row])
         return cell
     }
 }

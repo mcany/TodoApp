@@ -26,7 +26,7 @@ final class CoreDataDatabase {
 extension CoreDataDatabase: Database {
 
     func addItem(detail: String, reminder: Date?) {
-        context.perform { [weak self] in
+        context.performAndWait { [weak self] in
             guard let strongSelf = self else {
                 return
             }
@@ -39,7 +39,7 @@ extension CoreDataDatabase: Database {
     }
 
     func removeItem(todo: Todo) {
-        context.perform { [weak self] in
+        context.performAndWait { [weak self] in
             guard let strongSelf = self else {
                 return
             }
@@ -50,7 +50,7 @@ extension CoreDataDatabase: Database {
     }
 
     func updateItem(todo: Todo, status: Bool) {
-        context.perform { [weak self] in
+        context.performAndWait { [weak self] in
             guard let strongSelf = self else {
                 return
             }
@@ -76,7 +76,7 @@ extension CoreDataDatabase: Database {
 private extension CoreDataDatabase {
 
     func save() {
-        context.perform { [weak self] in
+        context.performAndWait { [weak self] in
             guard let strongSelf = self else {
                 return
             }
