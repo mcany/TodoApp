@@ -21,6 +21,6 @@ final class DetailViewModel {
     ///   - detail: Item detail
     ///   - reminder: Item reminder if exists
     func addTodoItem(detail: String, reminder: Date?) {
-        delegate?.shouldCreateItem(detail: detail, reminder: reminder)
+        delegate?.didCreateItem(detail: detail, reminder: reminder)
     }
 }

@@ -8,6 +8,7 @@
 
 import CoreData
 import Foundation
+import UIKit
 
 final class CoreDataDatabase {
 
@@ -20,6 +21,19 @@ final class CoreDataDatabase {
     init() {
         container = NSPersistentContainer(name: "TodoApp")
         container.loadPersistentStores { (_, _) in }
+
+        addApplicationObservers()
+    }
+
+    private func addApplicationObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(save),
+                                               name: UIApplication.willTerminateNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(save),
+                                               name: UIApplication.willResignActiveNotification,
+                                               object: nil)
     }
 }
 
@@ -34,33 +48,18 @@ extension CoreDataDatabase: Database {
             item.detail = detail
             item.reminder = reminder
             item.created = Date()
-            strongSelf.save()
-        }
-    }
-
-    func removeItem(todo: Todo) {
-        context.performAndWait { [weak self] in
-            guard let strongSelf = self else {
-                return
-            }
-
-            strongSelf.context.delete(todo)
-            strongSelf.save()
         }
     }
 
     func updateItem(todo: Todo, status: Bool) {
-        context.performAndWait { [weak self] in
-            guard let strongSelf = self else {
-                return
-            }
-
+        context.perform {
             todo.status = status
-            strongSelf.save()
         }
     }
 
     func retrieveItems() -> [Todo] {
+        save()
+
         var items: [Todo]?
         context.performAndWait { [weak self] in
             guard let strongSelf = self else {
@@ -75,7 +74,7 @@ extension CoreDataDatabase: Database {
 
 private extension CoreDataDatabase {
 
-    func save() {
+    @objc func save() {
         context.performAndWait { [weak self] in
             guard let strongSelf = self else {
                 return

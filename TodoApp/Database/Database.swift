@@ -17,11 +17,6 @@ protocol Database {
     ///   - reminder: Reminder if exists
     func addItem(detail: String, reminder: Date?)
 
-    /// Removes todo item if exists
-    ///
-    /// - Parameter todo: Todo item
-    func removeItem(todo: Todo)
-
     /// Update todo item status
     ///
     /// - Parameter todo: Todo item

@@ -15,7 +15,7 @@ protocol ItemEditingDelegate: class {
     /// - Parameters:
     ///   - detail: Item detail
     ///   - reminder: Item reminder if exists
-    func shouldCreateItem(detail: String, reminder: Date?)
+    func didCreateItem(detail: String, reminder: Date?)
 }
 
 final class ListViewModel {
@@ -35,11 +35,6 @@ final class ListViewModel {
 
     private let database = CoreDataDatabase()
 
-    func removeItem(at index: Int) {
-        database.removeItem(todo: items[index])
-        refreshItems()
-    }
-
     func updateItem(at index: Int, status: Bool) {
         database.updateItem(todo: items[index], status: status)
     }
@@ -48,7 +43,7 @@ final class ListViewModel {
 // MARK: - ItemEditingDelegate
 extension ListViewModel: ItemEditingDelegate {
 
-    func shouldCreateItem(detail: String, reminder: Date?) {
+    func didCreateItem(detail: String, reminder: Date?) {
         database.addItem(detail: detail, reminder: reminder)
         refreshItems()
     }
