@@ -8,12 +8,29 @@
 
 import UIKit
 
+protocol ListTableViewCellDelegate: class {
+
+    /// Called when cell updates status of the contained item
+    ///
+    /// - Parameters:
+    ///   - listTableViewCell: List table view cell
+    ///   - status: Updated status
+    ///   - index: Item index
+    func listTableViewCell(_ listTableViewCell: ListTableViewCell,
+                           didUpdate status: Bool,
+                           at index: Int)
+}
+
 final class ListTableViewCell: UITableViewCell {
 
     private enum Constant {
 
         static let defaultMargin: CGFloat = 15.0
     }
+
+    weak var delegate: ListTableViewCellDelegate?
+
+    private var index: Int?
 
     private var statusButton: UIButton!
     private var detailLabel: UILabel!
@@ -29,7 +46,9 @@ final class ListTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(todo: Todo) {
+    func configure(todo: Todo, index: Int) {
+        self.index = index
+
         statusButton.isSelected = todo.status
         detailLabel.text = todo.detail
         if let reminderDate = todo.reminder {
@@ -44,6 +63,9 @@ final class ListTableViewCell: UITableViewCell {
         statusButton.translatesAutoresizingMaskIntoConstraints = false
         statusButton.setImage(UIImage(named: "radio-off-button"), for: .normal)
         statusButton.setImage(UIImage(named: "radio-on-button"), for: .selected)
+        statusButton.addTarget(self,
+                               action: #selector(statusButtonValueChanged(_:)),
+                               for: .touchUpInside)
         contentView.addSubview(statusButton)
 
         detailLabel = UILabel()
@@ -59,10 +81,9 @@ final class ListTableViewCell: UITableViewCell {
         contentView.addSubview(reminderLabel)
 
         NSLayoutConstraint.activate([
+            statusButton.widthAnchor.constraint(equalTo: statusButton.heightAnchor, multiplier: 1.0),
             statusButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             statusButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            statusButton.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor),
-            contentView.bottomAnchor.constraint(greaterThanOrEqualTo: statusButton.topAnchor),
             detailLabel.topAnchor.constraint(equalTo: contentView.topAnchor,
                                              constant: Constant.defaultMargin),
             detailLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
@@ -77,8 +98,21 @@ final class ListTableViewCell: UITableViewCell {
             ])
 
         statusButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        statusButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
         reminderLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
 }
 
+// MARK: - Actions
+private extension ListTableViewCell {
+
+    @objc func statusButtonValueChanged(_ button: UIButton) {
+        button.isSelected.toggle()
+        if let index = index {
+            delegate?.listTableViewCell(self, didUpdate: button.isSelected, at: index)
+        }
+    }
+}
+
+// MARK: - Reusable
 extension ListTableViewCell: Reusable { }

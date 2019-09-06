@@ -15,6 +15,7 @@
                 <outlet property="detailTextView" destination="Lnn-5F-7wa" id="0xy-ot-gt4"/>
                 <outlet property="reminderDatePicker" destination="ou9-0T-JL7" id="erg-XF-NF6"/>
                 <outlet property="reminderSwitch" destination="b7b-qE-gVg" id="A3f-Tk-n5w"/>
+                <outlet property="saveItemButton" destination="5XR-JR-pfI" id="BZd-4l-cLm"/>
                 <outlet property="view" destination="HIR-5F-6Wb" id="8PT-74-r35"/>
             </connections>
         </placeholder>
@@ -24,29 +25,32 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Lnn-5F-7wa">
-                    <rect key="frame" x="8" y="44" width="398" height="224"/>
+                    <rect key="frame" x="8" y="44" width="398" height="179"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="kdW-GY-CXm"/>
+                    </connections>
                 </textView>
                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ou9-0T-JL7">
-                    <rect key="frame" x="0.0" y="305" width="414" height="216"/>
+                    <rect key="frame" x="0.0" y="260" width="414" height="216"/>
                     <date key="date" timeIntervalSinceReferenceDate="589434827.91714501">
                         <!--2019-09-06 03:53:47 +0000-->
                     </date>
                 </datePicker>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="b7b-qE-gVg">
-                    <rect key="frame" x="146" y="271" width="51" height="31"/>
+                    <rect key="frame" x="146" y="226" width="51" height="31"/>
                 </switch>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5XR-JR-pfI">
-                    <rect key="frame" x="203" y="271.5" width="203" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5XR-JR-pfI">
+                    <rect key="frame" x="203" y="226.5" width="203" height="30"/>
                     <state key="normal" title="Save Item"/>
                     <connections>
                         <action selector="saveButtonTapped" destination="-1" eventType="touchUpInside" id="fZA-ar-8gY"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminder Active:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFX-6B-bkm">
-                    <rect key="frame" x="8" y="276" width="130" height="21"/>
+                    <rect key="frame" x="8" y="231" width="130" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -66,7 +70,7 @@
                 <constraint firstItem="b7b-qE-gVg" firstAttribute="centerY" secondItem="HFX-6B-bkm" secondAttribute="centerY" id="mKd-ai-5S3"/>
                 <constraint firstItem="Lnn-5F-7wa" firstAttribute="top" secondItem="zme-6M-rOg" secondAttribute="top" id="oeR-73-ruI"/>
                 <constraint firstItem="ou9-0T-JL7" firstAttribute="top" secondItem="HFX-6B-bkm" secondAttribute="bottom" constant="8" symbolic="YES" id="old-a5-eZw"/>
-                <constraint firstItem="Lnn-5F-7wa" firstAttribute="height" secondItem="HIR-5F-6Wb" secondAttribute="height" multiplier="1:4" id="v5K-Qg-JGg"/>
+                <constraint firstItem="Lnn-5F-7wa" firstAttribute="height" secondItem="HIR-5F-6Wb" secondAttribute="height" multiplier="1:5" id="v5K-Qg-JGg"/>
                 <constraint firstItem="zme-6M-rOg" firstAttribute="trailing" secondItem="5XR-JR-pfI" secondAttribute="trailing" constant="8" id="yLF-qh-cA9"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="zme-6M-rOg"/>

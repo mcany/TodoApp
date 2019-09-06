@@ -16,6 +16,7 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak var detailTextView: UITextView!
     @IBOutlet weak var reminderSwitch: UISwitch!
     @IBOutlet weak var reminderDatePicker: UIDatePicker!
+    @IBOutlet weak var saveItemButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,5 +37,13 @@ final class DetailViewController: UIViewController {
         let reminderDate = reminderSwitch.isOn ? reminderDatePicker.date : nil
         viewModel.addTodoItem(detail: detailTextView.text, reminder: reminderDate)
         router?.dismiss(current: self)
+    }
+}
+
+// MARK: - UITextViewDelegate
+extension DetailViewController: UITextViewDelegate {
+
+    func textViewDidChange(_ textView: UITextView) {
+        saveItemButton.isEnabled = !textView.text.isEmpty
     }
 }

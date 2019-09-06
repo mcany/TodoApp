@@ -53,7 +53,18 @@ extension ListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ListTableViewCell = tableView.uk_dequeueReusableCell(forIndexPath: indexPath)
-        cell.configure(todo: viewModel.items[indexPath.row])
+        cell.delegate = self
+        cell.configure(todo: viewModel.items[indexPath.row], index: indexPath.row)
         return cell
+    }
+}
+
+// MARK: - ListTableViewCellDelegate
+extension ListViewController: ListTableViewCellDelegate {
+
+    func listTableViewCell(_ listTableViewCell: ListTableViewCell,
+                           didUpdate status: Bool,
+                           at index: Int) {
+        viewModel.updateItem(at: index, status: status)
     }
 }
