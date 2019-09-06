@@ -17,6 +17,11 @@
 		2B8A41CE2321868D0047917C /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A41CD2321868D0047917C /* Reusable.swift */; };
 		2B8A41D0232188210047917C /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B8A41CF232188210047917C /* ListViewController.xib */; };
 		2B8A41D323218F180047917C /* DateUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A41D223218F180047917C /* DateUtility.swift */; };
+		2B8A41D623220D820047917C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A41D523220D820047917C /* DetailViewController.swift */; };
+		2B8A41D823220D8C0047917C /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A41D723220D8C0047917C /* DetailViewModel.swift */; };
+		2B8A41DF2322119C0047917C /* ListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A41DE2322119C0047917C /* ListRouter.swift */; };
+		2B8A41E1232212BB0047917C /* GenericRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A41E0232212BB0047917C /* GenericRouting.swift */; };
+		2B8A41E5232213F10047917C /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B8A41E4232213F10047917C /* DetailViewController.xib */; };
 		2BED1BD1232169B70019659E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BED1BD0232169B70019659E /* AppDelegate.swift */; };
 		2BED1BD9232169B70019659E /* TodoApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2BED1BD7232169B70019659E /* TodoApp.xcdatamodeld */; };
 		2BED1BDB232169B80019659E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BED1BDA232169B80019659E /* Assets.xcassets */; };
@@ -45,6 +50,11 @@
 		2B8A41CD2321868D0047917C /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		2B8A41CF232188210047917C /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
 		2B8A41D223218F180047917C /* DateUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtility.swift; sourceTree = "<group>"; };
+		2B8A41D523220D820047917C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		2B8A41D723220D8C0047917C /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		2B8A41DE2322119C0047917C /* ListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRouter.swift; sourceTree = "<group>"; };
+		2B8A41E0232212BB0047917C /* GenericRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericRouting.swift; sourceTree = "<group>"; };
+		2B8A41E4232213F10047917C /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		2BED1BCD232169B70019659E /* TodoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BED1BD0232169B70019659E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BED1BD8232169B70019659E /* TodoApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodoApp.xcdatamodel; sourceTree = "<group>"; };
@@ -87,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				2B8A41C22321845F0047917C /* ApplicationRouter.swift */,
+				2B8A41E0232212BB0047917C /* GenericRouting.swift */,
+				2B8A41D423220D770047917C /* Detail */,
 				2B8A41BD2321820B0047917C /* List */,
 			);
 			path = Scenes;
@@ -95,9 +107,10 @@
 		2B8A41BD2321820B0047917C /* List */ = {
 			isa = PBXGroup;
 			children = (
-				2B8A41BE2321829D0047917C /* ListViewModel.swift */,
+				2B8A41DE2322119C0047917C /* ListRouter.swift */,
 				2B8A41C0232184350047917C /* ListViewController.swift */,
 				2B8A41CF232188210047917C /* ListViewController.xib */,
+				2B8A41BE2321829D0047917C /* ListViewModel.swift */,
 				2B8A41C6232185B60047917C /* Views */,
 			);
 			path = List;
@@ -134,6 +147,16 @@
 				2B8A41D223218F180047917C /* DateUtility.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		2B8A41D423220D770047917C /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				2B8A41D523220D820047917C /* DetailViewController.swift */,
+				2B8A41E4232213F10047917C /* DetailViewController.xib */,
+				2B8A41D723220D8C0047917C /* DetailViewModel.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		2BED1BC4232169B70019659E = {
@@ -263,6 +286,7 @@
 				2BED1BDE232169B80019659E /* LaunchScreen.storyboard in Resources */,
 				2B8A41D0232188210047917C /* ListViewController.xib in Resources */,
 				2BED1BDB232169B80019659E /* Assets.xcassets in Resources */,
+				2B8A41E5232213F10047917C /* DetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,11 +307,15 @@
 				2BED1BD9232169B70019659E /* TodoApp.xcdatamodeld in Sources */,
 				2B8A41C8232185C70047917C /* ListTableViewCell.swift in Sources */,
 				2B8A41D323218F180047917C /* DateUtility.swift in Sources */,
+				2B8A41D623220D820047917C /* DetailViewController.swift in Sources */,
 				2B8A41BF2321829D0047917C /* ListViewModel.swift in Sources */,
 				2B8A41B9232179B80047917C /* Database.swift in Sources */,
+				2B8A41E1232212BB0047917C /* GenericRouting.swift in Sources */,
 				2B8A41CE2321868D0047917C /* Reusable.swift in Sources */,
 				2BED1BD1232169B70019659E /* AppDelegate.swift in Sources */,
 				2B8A41C32321845F0047917C /* ApplicationRouter.swift in Sources */,
+				2B8A41DF2322119C0047917C /* ListRouter.swift in Sources */,
+				2B8A41D823220D8C0047917C /* DetailViewModel.swift in Sources */,
 				2B8A41CC2321865E0047917C /* UITableView+Additions.swift in Sources */,
 				2B8A41BB23217A5B0047917C /* CoreDataDatabase.swift in Sources */,
 				2B8A41C1232184350047917C /* ListViewController.swift in Sources */,

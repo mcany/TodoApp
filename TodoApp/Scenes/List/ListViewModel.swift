@@ -8,6 +8,16 @@
 
 import Foundation
 
+protocol ItemEditingDelegate: class {
+
+    /// Called when item is ready to be created
+    ///
+    /// - Parameters:
+    ///   - detail: Item detail
+    ///   - reminder: Item reminder if exists
+    func shouldCreateItem(detail: String, reminder: Date?)
+}
+
 final class ListViewModel {
 
     /// Triggered when items are updated
@@ -25,11 +35,6 @@ final class ListViewModel {
 
     private let database = CoreDataDatabase()
 
-    func addItem(detail: String, reminder: Date?) {
-        database.addItem(detail: detail, reminder: reminder)
-        refreshItems()
-    }
-
     func removeItem(at index: Int) {
         database.removeItem(todo: items[index])
         refreshItems()
@@ -37,10 +42,19 @@ final class ListViewModel {
 
     func updateItem(at index: Int, status: Bool) {
         database.updateItem(todo: items[index], status: status)
+    }
+}
+
+// MARK: - ItemEditingDelegate
+extension ListViewModel: ItemEditingDelegate {
+
+    func shouldCreateItem(detail: String, reminder: Date?) {
+        database.addItem(detail: detail, reminder: reminder)
         refreshItems()
     }
 }
 
+// MARK: - Helpers
 private extension ListViewModel {
 
     func refreshItems() {

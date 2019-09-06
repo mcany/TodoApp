@@ -11,6 +11,7 @@ import UIKit
 final class ListViewController: UIViewController {
 
     private let viewModel = ListViewModel()
+    private let router = ListRouter()
 
     @IBOutlet weak var todoTableView: UITableView!
 
@@ -25,7 +26,21 @@ final class ListViewController: UIViewController {
     }
 
     private func configureViews() {
+        title = "My list"
+
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add,
+                                        target: self,
+                                        action: #selector(addTodoItem))
+        navigationItem.rightBarButtonItem = addButton
+
         todoTableView.uk_registerNibCell(ListTableViewCell.self)
+    }
+
+    @objc func addTodoItem() {
+        guard let navigationController = navigationController else {
+            return
+        }
+        router.proceedToItemAdding(current: navigationController, delegate: viewModel)
     }
 }
 
