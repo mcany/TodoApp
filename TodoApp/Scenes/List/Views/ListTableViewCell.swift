@@ -49,10 +49,10 @@ final class ListTableViewCell: UITableViewCell {
     func configure(todo: Todo, index: Int) {
         self.index = index
 
-        statusButton.isSelected = todo.status
+        updateSelection(status: todo.status)
         detailLabel.text = todo.detail
         if let reminderDate = todo.reminder {
-            reminderLabel.text = "Scheduled:\n\(DateUtility.string(from: reminderDate))"
+            reminderLabel.text = "Scheduled: \(DateUtility.string(from: reminderDate))"
         }
     }
 
@@ -82,24 +82,27 @@ final class ListTableViewCell: UITableViewCell {
 
         NSLayoutConstraint.activate([
             statusButton.widthAnchor.constraint(equalTo: statusButton.heightAnchor, multiplier: 1.0),
-            statusButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             statusButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            detailLabel.topAnchor.constraint(equalTo: contentView.topAnchor,
-                                             constant: Constant.defaultMargin),
-            detailLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
-                                                constant: -Constant.defaultMargin),
+            statusButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             statusButton.trailingAnchor.constraint(equalTo: detailLabel.leadingAnchor,
                                                    constant: -Constant.defaultMargin),
-            reminderLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            reminderLabel.leadingAnchor.constraint(equalTo: detailLabel.trailingAnchor,
-                                                   constant: Constant.defaultMargin),
-            reminderLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
-                                                    constant: -Constant.defaultMargin),
+            detailLabel.topAnchor.constraint(equalTo: contentView.topAnchor,
+                                             constant: Constant.defaultMargin),
+            detailLabel.bottomAnchor.constraint(equalTo: reminderLabel.topAnchor),
+            detailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+                                                constant: -Constant.defaultMargin),
+            reminderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
+                                                  constant: -Constant.defaultMargin),
+            reminderLabel.leadingAnchor.constraint(equalTo: detailLabel.leadingAnchor)
             ])
 
         statusButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        statusButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
         reminderLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+    }
+
+    private func updateSelection(status: Bool) {
+        statusButton.isSelected = status
+        [detailLabel, reminderLabel].forEach { $0.textColor = status ? .lightGray : .black }
     }
 }
 
@@ -107,7 +110,7 @@ final class ListTableViewCell: UITableViewCell {
 private extension ListTableViewCell {
 
     @objc func statusButtonValueChanged(_ button: UIButton) {
-        button.isSelected.toggle()
+        updateSelection(status: !button.isSelected)
         if let index = index {
             delegate?.listTableViewCell(self, didUpdate: button.isSelected, at: index)
         }

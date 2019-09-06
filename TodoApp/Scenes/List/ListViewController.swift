@@ -33,6 +33,7 @@ final class ListViewController: UIViewController {
                                         action: #selector(addTodoItem))
         navigationItem.rightBarButtonItem = addButton
 
+        todoTableView.tableFooterView = UIView()
         todoTableView.uk_registerNibCell(ListTableViewCell.self)
     }
 
