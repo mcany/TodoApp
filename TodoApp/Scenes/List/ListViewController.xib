@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListViewController" customModule="TodoApp" customModuleProvider="target">
             <connections>
-                <outlet property="todoTableView" destination="eYm-dH-bI6" id="1VS-Gg-GDs"/>
+                <outlet property="todoCollectionView" destination="qiV-as-HEv" id="Rbn-Qb-oH2"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Ta2-yO-CdF"/>
             </connections>
         </placeholder>
@@ -21,22 +19,30 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eYm-dH-bI6">
-                    <rect key="frame" x="8" y="44" width="414" height="818"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qiV-as-HEv">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="hx2-iv-he2">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="57v-i7-jHq"/>
+                        <outlet property="dataSource" destination="-1" id="eVF-WY-m8D"/>
+                        <outlet property="delegate" destination="-1" id="34y-PK-CSb"/>
                     </connections>
-                </tableView>
+                </collectionView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="eYm-dH-bI6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="3lD-Em-6BT"/>
-                <constraint firstItem="eYm-dH-bI6" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="8" id="bwy-11-wzn"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="eYm-dH-bI6" secondAttribute="bottom" id="o6G-Y9-egG"/>
-                <constraint firstItem="eYm-dH-bI6" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="qPd-1p-Nd5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qiV-as-HEv" secondAttribute="trailing" id="LIy-UI-RJc"/>
+                <constraint firstItem="qiV-as-HEv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Q0o-c5-B5v"/>
+                <constraint firstItem="qiV-as-HEv" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="lna-ki-s8Z"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="qiV-as-HEv" secondAttribute="bottom" id="vy2-RW-Xkz"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="139" y="104"/>
         </view>
     </objects>
 </document>

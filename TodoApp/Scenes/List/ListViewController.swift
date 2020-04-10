@@ -13,16 +13,17 @@ final class ListViewController: UIViewController {
     private let viewModel = ListViewModel()
     private let router = ListRouter()
 
-    @IBOutlet weak var todoTableView: UITableView!
+    @IBOutlet weak var todoCollectionView: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureViews()
-
-        viewModel.itemsChanged = { [weak self] in
-            self?.todoTableView.reloadData()
+        viewModel.stateChangeHandler = { [weak self] change in
+            self?.apply(change: change)
         }
+
+        viewModel.refreshItems()
     }
 
     private func configureViews() {
@@ -33,8 +34,19 @@ final class ListViewController: UIViewController {
                                         action: #selector(addTodoItem))
         navigationItem.rightBarButtonItem = addButton
 
-        todoTableView.tableFooterView = UIView()
-        todoTableView.uk_registerNibCell(ListTableViewCell.self)
+        todoCollectionView.delegate = self
+        todoCollectionView.dataSource = self
+        todoCollectionView.uk_registerCell(ListCollectionViewCell.self)
+    }
+
+    private func apply(change: ListViewModel.Change) {
+        switch change {
+        case .items:
+            todoCollectionView.reloadData()
+        case .newItem:
+            let indexPath = IndexPath(row: viewModel.items.count, section: 0)
+            todoCollectionView.insertItems(at: [indexPath])
+        }
     }
 
     @objc func addTodoItem() {
@@ -45,27 +57,38 @@ final class ListViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDataSource
-extension ListViewController: UITableViewDataSource {
+// MARK: - UICollectionViewDataSource
+extension ListViewController: UICollectionViewDataSource {
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.items.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ListTableViewCell = tableView.uk_dequeueReusableCell(forIndexPath: indexPath)
-        cell.delegate = self
-        cell.configure(todo: viewModel.items[indexPath.row], index: indexPath.row)
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: ListCollectionViewCell = collectionView.uk_dequeueReusableCell(forIndexPath: indexPath)
+        cell.configure(todo: viewModel.items[indexPath.row], index: indexPath.row, delegate: self)
         return cell
     }
 }
 
-// MARK: - ListTableViewCellDelegate
-extension ListViewController: ListTableViewCellDelegate {
+// MARK: - UICollectionViewDelegateFlowLayout
+extension ListViewController: UICollectionViewDelegateFlowLayout {
 
-    func listTableViewCell(_ listTableViewCell: ListTableViewCell,
-                           didUpdate status: Bool,
-                           at index: Int) {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.frame.width / 3
+        return CGSize(width: width, height: width)
+    }
+}
+
+// MARK: - ListCollectionViewCellDelegate
+extension ListViewController: ListCollectionViewCellDelegate {
+
+    func listCollectionViewCell(_ listCollectionViewCell: ListCollectionViewCell,
+                                didUpdate status: Bool,
+                                at index: Int) {
         viewModel.updateItem(at: index, status: status)
     }
 }

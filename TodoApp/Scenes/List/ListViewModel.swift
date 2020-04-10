@@ -20,20 +20,22 @@ protocol ItemEditingDelegate: class {
 
 final class ListViewModel {
 
-    /// Triggered when items are updated
-    var itemsChanged: (() -> Void)? {
-        didSet {
-            refreshItems()
-        }
+    enum Change {
+
+        case items
+        case newItem
     }
 
-    private(set) var items: [Todo] = [] {
-        didSet {
-            itemsChanged?()
-        }
-    }
+    var stateChangeHandler: ((Change) -> Void)?
+
+    private(set) var items: [Todo] = []
 
     private let database = CoreDataDatabase()
+
+    func refreshItems(reload: Bool = true) {
+        items = database.retrieveItems()
+        stateChangeHandler?(reload ? .items: .newItem)
+    }
 
     func updateItem(at index: Int, status: Bool) {
         database.updateItem(todo: items[index], status: status)
@@ -45,15 +47,6 @@ extension ListViewModel: ItemEditingDelegate {
 
     func didCreateItem(detail: String, reminder: Date?) {
         database.addItem(detail: detail, reminder: reminder)
-        // TODO: Improve with only addition
-        refreshItems()
-    }
-}
-
-// MARK: - Helpers
-private extension ListViewModel {
-
-    func refreshItems() {
-        items = database.retrieveItems()
+        refreshItems(reload: true)
     }
 }
