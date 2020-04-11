@@ -8,12 +8,26 @@
 
 import Foundation
 
+protocol ItemEditingDelegate: class {
+
+    /// Called when item is ready to be created
+    ///
+    /// - Parameters:
+    ///   - detail: Item detail
+    ///   - reminder: Item reminder if exists
+    func didCreateItem(detail: String, reminder: Date?)
+}
+
 final class DetailViewModel {
 
     /// Minimum value for reminder date
     let minimumAllowedDate = Date().addingTimeInterval(120.0)
 
-    weak var delegate: ItemEditingDelegate?
+    private weak var delegate: ItemEditingDelegate?
+
+    init(delegate: ItemEditingDelegate) {
+        self.delegate = delegate
+    }
 
     /// Triggers delegate to add new item
     ///

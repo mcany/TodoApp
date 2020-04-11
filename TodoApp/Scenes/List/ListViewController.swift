@@ -29,9 +29,7 @@ final class ListViewController: UIViewController {
     private func configureViews() {
         title = "My list"
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add,
-                                        target: self,
-                                        action: #selector(addTodoItem))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTodoItem))
         navigationItem.rightBarButtonItem = addButton
 
         todoCollectionView.delegate = self

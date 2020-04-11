@@ -8,16 +8,6 @@
 
 import Foundation
 
-protocol ItemEditingDelegate: class {
-
-    /// Called when item is ready to be created
-    ///
-    /// - Parameters:
-    ///   - detail: Item detail
-    ///   - reminder: Item reminder if exists
-    func didCreateItem(detail: String, reminder: Date?)
-}
-
 final class ListViewModel {
 
     enum Change {

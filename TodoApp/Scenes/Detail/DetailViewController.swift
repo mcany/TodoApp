@@ -14,17 +14,17 @@ final class DetailViewController: UIViewController {
     var router: GenericRouting?
 
     @IBOutlet weak var detailTextView: UITextView!
-    @IBOutlet weak var reminderSwitch: UISwitch!
-    @IBOutlet weak var reminderDatePicker: UIDatePicker!
-    @IBOutlet weak var saveItemButton: UIButton!
+    @IBOutlet weak var reminderTextField: DatePickerTextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        detailTextView.backgroundColor = .lightGray
+        detailTextView.layer.borderWidth = 1.0
+        reminderTextField.placeholder = "Set reminder (Optional)"
+        reminderTextField.pickerSetup = (viewModel.minimumAllowedDate, Date.distantFuture, viewModel.minimumAllowedDate)
 
-        reminderDatePicker.minimumDate = viewModel.minimumAllowedDate
-        reminderDatePicker.datePickerMode = .dateAndTime
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
+        navigationItem.rightBarButtonItem = saveButton
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -33,17 +33,19 @@ final class DetailViewController: UIViewController {
         detailTextView.becomeFirstResponder()
     }
 
-    @IBAction func saveButtonTapped() {
-        let reminderDate = reminderSwitch.isOn ? reminderDatePicker.date : nil
-        viewModel.addTodoItem(detail: detailTextView.text, reminder: reminderDate)
+    @objc func saveButtonTapped() {
+        guard let detailText = detailTextView.text,
+            !detailText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty else {
+                let alertController = UIAlertController(
+                    title: "Error",
+                    message: "Please set description for the item!",
+                preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alertController, animated: true, completion: nil)
+            return
+        }
+
+        viewModel.addTodoItem(detail: detailText, reminder: reminderTextField.currentDate)
         router?.dismiss(current: self)
-    }
-}
-
-// MARK: - UITextViewDelegate
-extension DetailViewController: UITextViewDelegate {
-
-    func textViewDidChange(_ textView: UITextView) {
-        saveItemButton.isEnabled = !textView.text.isEmpty
     }
 }

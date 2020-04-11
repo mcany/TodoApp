@@ -14,12 +14,12 @@ final class ListRouter: GenericRouting {
 
     func proceedToItemAdding(current: UINavigationController, delegate: ItemEditingDelegate) {
         let controller = DetailViewController()
-        controller.viewModel = DetailViewModel()
-        controller.viewModel.delegate = delegate
+        controller.viewModel = DetailViewModel(delegate: delegate)
         controller.router = self
 
-        controller.transitioningDelegate = transitionManager
-        controller.modalPresentationStyle = .custom
-        current.present(controller, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: controller)
+        navigationController.transitioningDelegate = transitionManager
+        navigationController.modalPresentationStyle = .custom
+        current.present(navigationController, animated: true, completion: nil)
     }
 }

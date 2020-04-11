@@ -25,6 +25,7 @@
 		2B8A41E1232212BB0047917C /* GenericRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A41E0232212BB0047917C /* GenericRouting.swift */; };
 		2B8A41E5232213F10047917C /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B8A41E4232213F10047917C /* DetailViewController.xib */; };
 		2B8A41E8232222150047917C /* TodoApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A41E6232222150047917C /* TodoApp.xcdatamodeld */; };
+		2BC51ECB2441C96300EF1B34 /* DatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC51ECA2441C96300EF1B34 /* DatePickerTextField.swift */; };
 		2BED1BD1232169B70019659E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BED1BD0232169B70019659E /* AppDelegate.swift */; };
 		2BED1BDB232169B80019659E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BED1BDA232169B80019659E /* Assets.xcassets */; };
 		2BED1BDE232169B80019659E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BED1BDC232169B80019659E /* LaunchScreen.storyboard */; };
@@ -60,6 +61,7 @@
 		2B8A41E0232212BB0047917C /* GenericRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericRouting.swift; sourceTree = "<group>"; };
 		2B8A41E4232213F10047917C /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		2B8A41E7232222150047917C /* TodoApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodoApp.xcdatamodel; sourceTree = "<group>"; };
+		2BC51ECA2441C96300EF1B34 /* DatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTextField.swift; sourceTree = "<group>"; };
 		2BED1BCD232169B70019659E /* TodoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BED1BD0232169B70019659E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BED1BDA232169B80019659E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -174,6 +176,14 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		2BC51EC92441C94F00EF1B34 /* Reusables */ = {
+			isa = PBXGroup;
+			children = (
+				2BC51ECA2441C96300EF1B34 /* DatePickerTextField.swift */,
+			);
+			path = Reusables;
+			sourceTree = "<group>";
+		};
 		2BED1BC4232169B70019659E = {
 			isa = PBXGroup;
 			children = (
@@ -195,14 +205,15 @@
 		2BED1BCF232169B70019659E /* TodoApp */ = {
 			isa = PBXGroup;
 			children = (
-				2B8A41B7232179AD0047917C /* Database */,
-				2B8A41C9232186240047917C /* Extensions */,
-				2B8A41BC232182040047917C /* Scenes */,
-				2B8A41D123218F0B0047917C /* Utility */,
 				2BED1BD0232169B70019659E /* AppDelegate.swift */,
 				2BED1BDA232169B80019659E /* Assets.xcassets */,
-				2BED1BDC232169B80019659E /* LaunchScreen.storyboard */,
 				2BED1BDF232169B80019659E /* Info.plist */,
+				2BED1BDC232169B80019659E /* LaunchScreen.storyboard */,
+				2B8A41B7232179AD0047917C /* Database */,
+				2B8A41C9232186240047917C /* Extensions */,
+				2BC51EC92441C94F00EF1B34 /* Reusables */,
+				2B8A41BC232182040047917C /* Scenes */,
+				2B8A41D123218F0B0047917C /* Utility */,
 			);
 			path = TodoApp;
 			sourceTree = "<group>";
@@ -323,6 +334,7 @@
 				2B8A41D623220D820047917C /* DetailViewController.swift in Sources */,
 				2B8A41BF2321829D0047917C /* ListViewModel.swift in Sources */,
 				2B8A41B9232179B80047917C /* Database.swift in Sources */,
+				2BC51ECB2441C96300EF1B34 /* DatePickerTextField.swift in Sources */,
 				2B5BE9862440C3380077867A /* CALayer+Additions.swift in Sources */,
 				2B8A41E1232212BB0047917C /* GenericRouting.swift in Sources */,
 				2B8A41CE2321868D0047917C /* Reusable.swift in Sources */,

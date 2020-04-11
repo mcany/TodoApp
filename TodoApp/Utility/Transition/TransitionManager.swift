@@ -13,13 +13,19 @@ final class TransitionManager: NSObject, UIViewControllerAnimatedTransitioning {
     private var isPresenting = false
 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        1.0
+        0.2
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         if isPresenting {
-            transitionContext.containerView.addSubview(transitionContext.view(forKey: .to)!)
-            transitionContext.completeTransition(true)
+            let detailView = transitionContext.view(forKey: .to)!
+            detailView.alpha = 0.0
+            transitionContext.containerView.addSubview(detailView)
+            UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+                detailView.alpha = 1.0
+            }, completion: { isFinished in
+                transitionContext.completeTransition(isFinished)
+            })
         } else {
             transitionContext.containerView.addSubview(transitionContext.view(forKey: .from)!)
             transitionContext.completeTransition(true)
