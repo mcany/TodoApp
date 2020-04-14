@@ -23,8 +23,15 @@ final class DetailViewController: UIViewController {
         reminderTextField.placeholder = "Set reminder (Optional)"
         reminderTextField.pickerSetup = (viewModel.minimumAllowedDate, Date.distantFuture, viewModel.minimumAllowedDate)
 
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save,
+                                         target: self,
+                                         action: #selector(saveButtonTapped))
         navigationItem.rightBarButtonItem = saveButton
+
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .cancel,
+                                          target: self,
+                                          action: #selector(closeButtonTapped))
+        navigationItem.leftBarButtonItem = closeButton
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -47,5 +54,9 @@ final class DetailViewController: UIViewController {
 
         viewModel.addTodoItem(detail: detailText, reminder: reminderTextField.currentDate)
         router?.dismiss(current: self)
+    }
+
+    @objc func closeButtonTapped() {
+        dismiss(animated: true, completion: nil)
     }
 }
