@@ -42,7 +42,7 @@ final class ListViewController: UIViewController {
         case .items:
             todoCollectionView.reloadData()
         case .newItem:
-            let indexPath = IndexPath(row: viewModel.items.count, section: 0)
+            let indexPath = IndexPath(row: viewModel.items.count - 1, section: 0)
             todoCollectionView.insertItems(at: [indexPath])
         }
     }

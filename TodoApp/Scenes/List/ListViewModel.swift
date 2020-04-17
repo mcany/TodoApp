@@ -37,6 +37,6 @@ extension ListViewModel: ItemEditingDelegate {
 
     func didCreateItem(detail: String, reminder: Date?) {
         database.addItem(detail: detail, reminder: reminder)
-        refreshItems(reload: true)
+        refreshItems(reload: false)
     }
 }
