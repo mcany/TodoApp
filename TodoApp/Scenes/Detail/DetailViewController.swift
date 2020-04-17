@@ -19,6 +19,10 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = .systemBackground
+        detailTextView.backgroundColor = .secondarySystemBackground
+        reminderTextField.backgroundColor = .secondarySystemBackground
+
         detailTextView.layer.borderWidth = 1.0
         reminderTextField.placeholder = "Set reminder (Optional)"
         reminderTextField.pickerSetup = (viewModel.minimumAllowedDate, Date.distantFuture, viewModel.minimumAllowedDate)
